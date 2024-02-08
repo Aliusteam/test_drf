@@ -23,6 +23,7 @@ class WorkAPIView(APIView):
                 file=request.data['file'],
                 # uploaded_at=request.data['uploaded_at']
             )
+            # ДОЛЖЕН БЫТЬ ВКЛЮЧЕН RADIS и виртуальная машина !!!!!!!!!!!!!
             # Помещение задачи в Celery - и изменение processed на True
             process_uploaded_file.delay(post_new.id)
 
@@ -36,7 +37,6 @@ class FilesAPIView(APIView):
     def get(self, request):
         w = File.objects.all()
         return Response({'posts': WorkSerializer(w, many=True).data})
-
 
 
 # # ListAPIView -  это представления
